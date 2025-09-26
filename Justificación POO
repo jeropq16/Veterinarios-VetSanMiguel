@@ -1,0 +1,82 @@
+# 🐶🐱 Sistema Veterinaria San Miguel - Gestión de Veterinarios
+
+Este módulo corresponde al CRUD de la entidad **Veterinario**, desarrollado en **C# (consola)** utilizando **Entity Framework Core** y **MySQL**.  
+Se aplicaron los principios de **Programación Orientada a Objetos (POO)** en el diseño y desarrollo.
+
+---
+
+## 📌 Justificación del diseño con POO
+
+### 🔒 Encapsulamiento
+- La clase `VeterinarioService` contiene todos los métodos necesarios para registrar, editar, eliminar y listar veterinarios.  
+- El acceso a la base de datos (`ApplicationDbContext`) está controlado dentro del servicio, evitando accesos directos desde otras capas.
+
+### 🧬 Herencia
+- La clase `Veterinario` hereda de la clase `Persona`, reutilizando atributos comunes (`Nombre`, `Apellido`, `Telefono`).  
+- Esto evita duplicación de código y refleja una jerarquía real del dominio.
+
+### 🎭 Abstracción
+- Las validaciones de entrada se implementaron en métodos privados (`PedirTexto`, `PedirNumero`).  
+- Esto simplifica el uso de los métodos de CRUD, ocultando la complejidad de la validación al usuario final.
+
+### 🔁 Polimorfismo
+- `Veterinario` es tratado como una `Persona` pero añade su propiedad propia `Especialidad`.  
+- Esto permite ampliar el sistema en el futuro donde `Persona` pueda tener otros tipos derivados.
+
+---
+
+## ⚙️ Operaciones implementadas
+
+- **Registrar Veterinario** → con validaciones de datos.  
+- **Listar Veterinarios** → obtiene todos los registros de MySQL.  
+- **Editar Veterinario** → modifica teléfono y especialidad.  
+- **Eliminar Veterinario** → elimina un registro existente.  
+
+---
+
+## ✅ Validaciones incluidas
+
+- Ningún campo puede ser nulo o vacío.  
+- No se aceptan solo números en campos de texto (`Nombre`, `Apellido`, `Especialidad`).  
+- Solo se aceptan números en campos numéricos (`Telefono`, `Id`).  
+- Se muestran mensajes de error o confirmación claros en cada operación.  
+
+---
+
+## 🗂️ Estructura de carpetas
+
+📂 Data
+└── ApplicationDbContext.cs
+📂 Models
+├── Persona.cs
+└── Veterinario.cs
+📂 Services
+└── VeterinarioService.cs
+📂 Mains
+└── MenuVeterinario.cs
+Program.cs
+VeterinariaSanMiguel.csproj
+
+
+### Responsabilidades
+- **Models** → Definición de entidades.  
+- **Data** → Conexión con EF Core y MySQL.  
+- **Services** → Lógica de negocio (CRUD).  
+- **Mains** → Menús y control de flujo en consola.  
+
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/VeterinariaSanMiguel.git
+   cd VeterinariaSanMiguel
+
+  dotnet restore
+
+
+  dotnet ef migrations add Inicial
+  dotnet ef database update
+
+  dotnet run
