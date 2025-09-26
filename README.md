@@ -54,5 +54,3 @@ La clase `Veterinario` fue incluida en el `DbContext` principal del sistema. Se 
 - El módulo está diseñado para integrarse fácilmente con el resto del sistema.
 
 ---
-
-¿Quieres que también te ayude a preparar una presentación corta o una guía de uso para tu parte? Puedo ayudarte a brillar en tu entrega 😄
